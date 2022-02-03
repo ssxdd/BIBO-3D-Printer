@@ -1,0 +1,10 @@
+[filament]
+name = Bibo touch maker base PLA18040 settings
+diameter = 1.75
+multiplierPercent = 100
+printingTemperature = 180
+enableCooling = True
+bedTemperature = 40
+fanSpeedMin = 100
+fanSpeedMax = 100
+minimalLayerTime = 5

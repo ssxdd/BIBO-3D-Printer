@@ -1,0 +1,166 @@
+[print]
+name = BIBO single extruder printing 180223 repetier cura printing settings
+defaultQuality = asF0775eooCpEAWnu69SmQLRzjKpmsWT
+travelSpeedMin = 100
+travelSpeedMax = 100
+firstLayerSpeedMin = 30
+firstLayerSpeedMax = 30
+infillSpeedMin = 50
+infillSpeedMax = 80
+infillType = 1
+innerPerimeterMin = 50
+innerPerimeterMax = 80
+outerPerimeterMin = 30
+outerPerimeterMax = 50
+printSpeedMin = 30
+printSpeedMax = 80
+gcodeFlavour = 0
+retractionCombing = True
+multiVolumeOverlap = 0.05
+cutOffObjectBottom = 0
+shellThickness = 0.8
+infillTopBottomThickness = 1
+infillDensityPercent = 20
+supportType = 0
+platformAdhesion = 0
+dualExtrusion = 0
+wipeAndPrimeTower = False
+oozeShield = False
+enableRetraction = True
+retractionSpeed = 40
+retractionDistance = 4
+multiExtruderSwitchAmount = 16
+startGCode = """
+{IF_BED}M190 S{BED}
+M109 T0 S170
+M109 T1 S170  ;preheat the other extruder, so it will not knock or ruin the print
+{IF_EXT0}M109 T0 S{TEMP0}
+{IF_EXT1}M109 T1 S{TEMP1}
+G90 ; absolute mode
+G21 ; metric values
+M82 ; Extruder in absolute mode
+M107 
+G28
+G1 Z2 F100
+T0
+G92 E0
+G28
+G1 Y0 F1200 E0
+G92 E0
+{IF_EXT0}T0
+{IF_EXT1}T1
+G92 E0		
+G1 X-16.0 Y-92.9 Z0.3 F2400.0		; move to start-line position
+G1 X16.0 Y-92.9 Z0.3 F1000.0 E2		; draw 1st line
+G1 X16.0 Y-92.6 Z0.3 F3000.0		; move to side a little
+G1 X-16.0 Y-92.6 Z0.3 F1000.0 E4		; draw 2nd line
+G1 X-16.0 Y-92.3 Z0.3 F3000.0		; move to side a little
+G1 X16.0 Y-92.3 Z0.3 F1000.0 E6		; draw 3rd line
+G1 X16.0 Y-92 Z0.3 F3000.0		; move to side a little
+G1 X-16.0 Y-92 Z0.3 F1000.0 E8		; draw 4th line
+G1 X-16.0 Y-91.7 Z0.3 F3000.0		; move to side a little
+G1 X16.0 Y-91.7 Z0.3 F1000.0 E10		; draw 5th line
+G1 X16.0 Y-91.4 Z0.3 F3000.0		; move to side a little
+G1 X-16.0 Y-91.4 Z0.3 F1000.0 E12		; draw 5th line
+G1 E11.5 F2400				; retract filament 0.5mm
+G92 E0    
+M117 BIBO Printing...
+"""
+endGCode = """
+;BIBO End GCode
+M107
+G91 ; Relative positioning
+G1 Z1 F100
+{IF_EXT0}T0
+{IF_EXT0}G1 E-1 F300; Reduce filament pressure
+M104 T0 S0
+{IF_EXT1}T1
+{IF_EXT1}G1 E-1 F300; Reduce filament pressure
+M104 T1 S0
+G1 X-20 Y-20 F3000
+G28 X0 Y0
+G90 ; Absolute positioning
+G92 E0 ; Reset extruder position
+M140 S0 ; Disable heated bed
+M84 ; Turn steppers off
+M117 BIBO Print complete
+"""
+preSwitchExtruderCode = 
+postSwitchExtruderCode = 
+wipeAndPrimeTowerVolume = 20
+retractionMinimumTravel = 1
+minimumExtrusionBeforeRetract = 0.02
+zhop = 0
+skirtLineCount = 0
+skirtDistance = 3
+skirtMinimumLength = 150
+solidInfillTop = True
+solidInfillBottom = True
+infillOverlapPercent = 0
+supportStructureType = 0
+supportOverhang = 20
+supportFillPercent = 15
+supportDistanceXY = 0.7
+supportDistanceZ = 0.15
+supportExtruder = -1
+spiralizeOuterContour = False
+brimWidth = 4
+raftExtraMargin = 5
+raftLineSpacing = 2
+raftBaseThickness = 0.3
+raftBaseWidth = 0.7
+raftInterfaceThickness = 0.2
+raftInterfaceLineWidth = 0.2
+raftAirGap = 0
+raftAirGapLayer0 = 0
+raftSurfaceLayer = 1
+fixCombineEverythingA = True
+fixCombineEverythingB = False
+fixKeepOpenFaces = False
+fixExtensiveStitching = False
+fanFullAtHeight = 2
+minimumSpeed = 10
+coolHeadLift = True
+numQuality = 5
+brimLineAmount = 10
+nozzleDiameter = 0
+skinSpeedMin = 30
+skinSpeedMax = 60
+combing = 1
+perimeterBeforeInfill = True
+[quality_0]
+name = Extreme Quality (50 μm)
+signature = dqR36KQaK6Summ17uiWPcVUakVbVRo7G
+layerHeight = 0.05
+firstLayerHeight = 0.3
+layer0widthPercent = 100
+[quality_1]
+name = Very High Quality (100 μm)
+signature = 650L3lRi0P9RV3gSlzdIUTLtzN8887JI
+layerHeight = 0.1
+firstLayerHeight = 0.3
+layer0widthPercent = 100
+[quality_2]
+name = Very High Quality (150 μm)
+signature = asF0775eooCpEAWnu69SmQLRzjKpmsWT
+layerHeight = 0.15
+firstLayerHeight = 0.3
+layer0widthPercent = 100
+[quality_3]
+name = Normal Quality (200 μm)
+signature = ZpotcaIFneyftAzXPe77jKKKenODuT4k
+layerHeight = 0.2
+firstLayerHeight = 0.3
+layer0widthPercent = 100
+[quality_4]
+name = Draft Quality (250 μm)
+signature = zEE0XEqq9YthsQEFZOtAJbXOaQ6B3dsl
+layerHeight = 0.25
+firstLayerHeight = 0.3
+layer0widthPercent = 100
+[quality_5]
+name = Extreme Quality (20 μm)
+signature = zbEqyaAVpbMPMEo2eGAFUES2vPE8a4eG
+layerHeight = 0.02
+layer0widthPercent = 100
+firstLayerHeight = 0.1

@@ -1,0 +1,10 @@
+[filament]
+name = Bibo touch maker base ABS22570 settings
+diameter = 1.75
+multiplierPercent = 100
+printingTemperature = 225
+enableCooling = True
+bedTemperature = 70
+fanSpeedMin = 0
+fanSpeedMax = 0
+minimalLayerTime = 5

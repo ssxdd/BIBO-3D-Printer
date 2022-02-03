@@ -1,0 +1,3 @@
+ Just import these settings fff file to simplify 3d on File tab, and then BIBO printer is set up in simplify 3d.
+
+ Software instruction is here: https://www.simplify3d.com/support/ 

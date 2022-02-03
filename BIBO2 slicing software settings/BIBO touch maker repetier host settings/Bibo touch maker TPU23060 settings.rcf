@@ -1,0 +1,10 @@
+[filament]
+name = Bibo touch maker TPU23060 settings
+diameter = 1.75
+multiplierPercent = 100
+printingTemperature = 230
+enableCooling = True
+bedTemperature = 60
+fanSpeedMin = 0
+fanSpeedMax = 0
+minimalLayerTime = 5
